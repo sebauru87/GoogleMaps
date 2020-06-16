@@ -29,6 +29,7 @@ body {
     border-radius: 44px;
     height: 35px;
 }
+
 .search {
     height: 100%;
     display: flex;
@@ -36,6 +37,7 @@ body {
     padding-right: 10px;
     padding-left: 10px;
 }
+
 .search-input {
     padding: 1px;
     flex-grow: 1;
@@ -45,8 +47,20 @@ body {
     color: white;
     outline: none;
 }
+
 .fa-search {
     color: white;
     font-size: 20px;
+}
 
+.list-container {
+    width: 285px;
+    border-radius: 30px;
+    background-color: white;
+    top: 320px;
+    position: absolute;
+    z-index: 10;
+    top: 200px;
+    left: 50px;
+    bottom: 20px;
 }

@@ -21,27 +21,14 @@
 
 
     </div>
+    <div class="list-container"></div>
     <div id="map"></div>
 
-    <script>
-        var map;
-
-        function initMap() {
-            let montevideoCoordinates = {
-                lat: -34.9032784,
-                lng: -56.1881599
-            }
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: montevideoCoordinates,
-                zoom: 12
-            });
-        }
-    </script>
-
+    <script src="js/index.js" async defer></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu0FFXJVqh9tDs83n7ccULP26QAqmKEqw&callback=initMap">
     </script>
-    <script src="js/index.js" async defer></script>
+
 </body>
 
 </html>
