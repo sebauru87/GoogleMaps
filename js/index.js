@@ -17,7 +17,7 @@ function initMap() {
 
 }
 const createMarker = (storeLat, storeLng, name, index) => {
-    let html = "<b>" + name + "</b> <br/>";
+    let html = `<i class="fas fa-location-arrow"></i><b>${name}</b> <br/>`;
     var marker = new google.maps.Marker({
         position: {
             lat: storeLat,

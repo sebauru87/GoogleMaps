@@ -63,4 +63,45 @@ body {
     top: 200px;
     left: 50px;
     bottom: 20px;
+    display: flex;
+}
+
+.stores-list {
+    flex-grow: 1;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+
+.background {
+    border-bottom: 1px solid #979797;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.store {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.store:hover {
+    background-color: #cccccc87;
+
+}
+
+.store-index {
+    background-color: #454E53;
+    border-radius: 50%;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
