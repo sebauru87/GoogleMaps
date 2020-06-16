@@ -1,4 +1,5 @@
 var map;
+var infoWindow;
 
 function initMap() {
     let montevideoCoordinates = {
@@ -10,19 +11,26 @@ function initMap() {
         zoom: 14
     });
     //createMarker();
+    infoWindow = new google.maps.InfoWindow();
     getStores();
 
 
 }
-const createMarker = (storeLat, storeLng, name) => {
+const createMarker = (storeLat, storeLng, name, index) => {
+    let html = "<b>" + name + "</b> <br/>";
     var marker = new google.maps.Marker({
         position: {
             lat: storeLat,
             lng: storeLng
         },
         map: map,
-        title: name
+        title: name,
+        label: `${index}`
     });
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+      });
 }
 
 const getStores=()=>{
@@ -47,6 +55,13 @@ const searchLocationsNear=(stores)=>{
             let storeLat = store.latitude;
             let storeLng = store.longitude;
             let storeName = store.name;
-        createMarker(storeLat, storeLng, storeName);
+            let titleName = '';
+            for(let i of storeName){
+                //console.log(i);
+                if(i=='<'){ break; }
+                titleName+=i;
+
+            }
+        createMarker(storeLat, storeLng, titleName, index+1);
     })
 }
