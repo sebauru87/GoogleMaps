@@ -110,3 +110,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+.store-index-hover-state {
+    color: #454E53;
+    background-color: #B5ADAD;
+}
