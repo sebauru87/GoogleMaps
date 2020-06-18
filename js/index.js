@@ -17,13 +17,10 @@ function initMap() {
 
 
 }
-const createMarker = (storeLat, storeLng, name, index) => {
+const createMarker = (latlng, name, index) => {
     let html = `<i class="fas fa-location-arrow"></i><b>${name}</b> <br/>`;
     var marker = new google.maps.Marker({
-        position: {
-            lat: storeLat,
-            lng: storeLng
-        },
+        position: latlng,
         map: map,
         title: name,
         label: `${index}`
@@ -56,12 +53,14 @@ const getStores = () => {
 const searchLocationsNear = (stores) => {
     stores.forEach((store, index) => {
         //console.log(store.name);
-        let storeLat = store.latitude;
+        let latlng = new google.maps.LatLng(
+            store.location["coordinates"][1],
+            store.location["coordinates"][0]);
         let storeLng = store.longitude;
         let storeName = store.name;
         let titleName = changeName(storeName);
 
-        createMarker(storeLat, storeLng, titleName, index + 1);
+        createMarker(latlng, titleName, index + 1);
 
     })
 }
