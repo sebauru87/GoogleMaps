@@ -1,6 +1,8 @@
 var map;
 var infoWindow;
-var markers=[];
+var markers = [];
+
+
 
 function initMap() {
     let montevideoCoordinates = {
@@ -13,10 +15,9 @@ function initMap() {
     });
     //createMarker();
     infoWindow = new google.maps.InfoWindow();
-    getStores();
-
 
 }
+
 const createMarker = (latlng, name, index) => {
     let html = `<i class="fas fa-location-arrow"></i><b>${name}</b> <br/>`;
     var marker = new google.maps.Marker({
@@ -33,7 +34,11 @@ const createMarker = (latlng, name, index) => {
 }
 
 const getStores = () => {
-    const API_URL = 'http://localhost:3000/api/stores';
+    const zipCode = document.getElementById('zipCode').value;
+    if (!zipCode) {
+        return;
+    }
+    const API_URL = `http://localhost:3000/api/stores?zip_code=${zipCode}`;
     fetch(API_URL)
         .then((response) => {
             if (response.status == 200) {
@@ -44,6 +49,7 @@ const getStores = () => {
 
         }).then((data) => {
             //console.log(data);
+            clearLocations();
             searchLocationsNear(data);
             setStoresList(data);
             setOnClickListener();
@@ -51,6 +57,7 @@ const getStores = () => {
 }
 
 const searchLocationsNear = (stores) => {
+
     stores.forEach((store, index) => {
         //console.log(store.name);
         let latlng = new google.maps.LatLng(
@@ -64,6 +71,14 @@ const searchLocationsNear = (stores) => {
 
     })
 }
+const clearLocations = () => {
+    infoWindow.close();
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers.length = 0;
+}
+
 const changeName = (title) => {
     let titleName = '';
     for (let i of title) {
@@ -78,7 +93,7 @@ const changeName = (title) => {
 const setStoresList = (stores) => {
     let htmlDiv = '';
     stores.forEach((store, index) => {
-        htmlDiv +=`<div class="background">
+        htmlDiv += `<div class="background">
                     <div class="store">
                     <div class="store-title">${store.name}</div>
                     <div class="store-index">${index+1}</div>
@@ -89,13 +104,14 @@ const setStoresList = (stores) => {
     document.querySelector('.store-info-container').innerHTML = htmlDiv;
 }
 
-const setOnClickListener=()=>{
+const setOnClickListener = () => {
     let storeElements = document.querySelectorAll('.store');
 
-    storeElements.forEach((elem, index)=>{
-        elem.addEventListener('click', ()=>{
+    storeElements.forEach((elem, index) => {
+        elem.addEventListener('click', () => {
             google.maps.event.trigger(markers[index], 'click');
         })
 
     })
 }
+// document.getElementById("search").addEventListener("click", getStores());

@@ -15,8 +15,10 @@
 <body>
     <div class="title">Store Locator</div>
     <div class="search-container">
-        <div class="search"><input class="search-input" type="text" placeholder="Enter Zip Code" />
-            <i class="fas fa-search"></i>
+        <div class="search">
+            <input id="zipCode" class="search-input" type="text" placeholder="Enter Zip Code or Location" onkeyup="if (event.keyCode == 13)
+            document.getElementById('search').click()"/>
+            <i id="search" class="fas fa-search" onclick="getStores()"></i>
         </div>
 
 
