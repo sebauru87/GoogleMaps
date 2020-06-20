@@ -49,15 +49,21 @@ const getStores = () => {
 
         }).then((data) => {
             //console.log(data);
-            clearLocations();
-            searchLocationsNear(data);
-            setStoresList(data);
-            setOnClickListener();
+            if (data.length > 0) {
+                clearLocations();
+                searchLocationsNear(data);
+                setStoresList(data);
+                setOnClickListener();
+            } else {
+                clearLocations();
+                noStoresFound();
+            }
         });
 }
 
 const searchLocationsNear = (stores) => {
 
+    var bounds = new google.maps.LatLngBounds();
     stores.forEach((store, index) => {
         //console.log(store.name);
         let latlng = new google.maps.LatLng(
@@ -66,10 +72,11 @@ const searchLocationsNear = (stores) => {
         let storeLng = store.longitude;
         let storeName = store.name;
         let titleName = changeName(storeName);
-
+            bounds.extend(latlng);
         createMarker(latlng, titleName, index + 1);
 
     })
+    map.fitBounds(bounds);
 }
 const clearLocations = () => {
     infoWindow.close();
@@ -78,7 +85,14 @@ const clearLocations = () => {
     }
     markers.length = 0;
 }
-
+const noStoresFound = () => {
+    const html = `
+        <div class"no-stores-found">
+            No Stores found
+        </div>
+    `
+    document.querySelector('.store-info-container').innerHTML = html;
+}
 const changeName = (title) => {
     let titleName = '';
     for (let i of title) {

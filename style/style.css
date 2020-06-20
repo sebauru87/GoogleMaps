@@ -52,6 +52,9 @@ body {
     color: white;
     font-size: 20px;
 }
+.fa-search:hover {
+    color: #979797;
+}
 
 .list-container {
     width: 285px;
@@ -113,4 +116,28 @@ body {
 .store-index-hover-state {
     color: #454E53;
     background-color: #B5ADAD;
+}
+.intro {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    margin-left: 20px;
+}
+.enter-zip {
+    color: #514c4c;
+}
+.find-stores{
+    color: #1985a1;
+}
+.no-stores-found {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    margin-left: 20px;
 }
