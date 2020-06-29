@@ -38,7 +38,7 @@ const getStores = () => {
     if (!zipCode) {
         return;
     }
-    const API_URL = `http://localhost:3000/api/stores?zip_code=${zipCode}`;
+    const API_URL = `https://mcdonalds-google-locator-serve.herokuapp.com/api/stores?zip_code=${zipCode}`;
     fetch(API_URL)
         .then((response) => {
             if (response.status == 200) {
